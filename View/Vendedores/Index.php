@@ -16,7 +16,7 @@
         <p>Cidade:
             <input type="text" size="40" name="cidade"></p>
         <p>
-            <input type="submit" value="Cadastrar"/>
+            <button type="submit" name='save' value='true'>Cadastrar</Button>
     </form>
 <table>
 <caption><b>Vendedores</b></caption>
@@ -33,10 +33,12 @@
             <td><?= $v['nome']; ?></td>
             <td><?= $v['idade']; ?> </td>
             <td><?= $v['cidade']; ?> </td>
-            <td><?= $v['cidade']; ?> </td>
             <td>
-                <form name='formDelete' method='post'>
-                    <button type='submit' name='delete' value='<?= $v['vendedor_id']; ?>'>Deletar</Button>
+                <form method='post'>
+                    <button type='submit' name='delete_id' value='<?= $v['vendedor_id']; ?>'>Deletar</Button>
+                </form>
+                <form method='post'>
+                    <button type='submit' name='editar_id' value='<?= $v['vendedor_id']; ?>'>Editar</Button>
                 </form>
              </td>
         </tr>

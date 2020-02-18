@@ -21,6 +21,17 @@ class Vendedores_Model extends db{
         return $row;
     }
 
+    function find($id) {
+        
+        $sql = "SELECT * FROM $this->table_name WHERE vendedor_id = $id";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
     function save($parametros){
 
         $sql = "INSERT INTO $this->table_name (nome, idade, cidade) VALUES (:nome, :idade, :cidade)";
@@ -32,8 +43,16 @@ class Vendedores_Model extends db{
             ':cidade' => $parametros['cidade']));
     }
 
-    function delete(){
-        
+    function delete($id){
+
+        $sql = "DELETE FROM $this->table_name WHERE vendedor_id = :id";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute(array(':id' => $id));
+    }
+
+    function update(){
+
     }
 }
 
