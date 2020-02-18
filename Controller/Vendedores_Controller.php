@@ -2,11 +2,17 @@
 
 require_once('../Model/Vendedores_Model.php');
 
-$vendedores = new Vendedores_Model();
+$vendedores_model = new Vendedores_Model();
 
-if ( isset($_POST)  ) {
+$vendedores = $vendedores_model->get_all();
+if (!empty($_POST)) {
 
-    $vendedores->get_all();
+    if (isset($_POST['delete'])){
+        
+    }
+    
+    $vendedores_model->save($_POST);
+
     /* $e = $_POST['email'];
     $p = $_POST['password'];
 
@@ -27,6 +33,5 @@ if ( isset($_POST)  ) {
        echo "<p>Login success.</p>\n";
     } */
 }
-
 
 require_once('../View/Vendedores_View.php');

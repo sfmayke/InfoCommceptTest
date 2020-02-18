@@ -1,14 +1,44 @@
-<?php ?>
+<style>
+    th, td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    tr:hover {background-color: #f5f5f5;}
+</style>
 
-<p>Please Login</p>
-<form method="post">
-<p>Email:
-<input type="text" size="40" name="email"></p>
-<p>Password:
-<input type="text" size="40" name="password"></p>
-<p><input type="submit" value="Login"/>
-<a href="<?php echo($_SERVER['PHP_SELF']);?>">Refresh</a></p>
-</form>
-<p>
-Check out this
-<a href="http://xkcd.com/327/" target="_blank">XKCD comic that is relevant</a>.
+<p>Cadastro de Vendedores</p>
+    <form method="post">
+        <p>Nome:
+            <input type="text" size="40" name="nome"></p>
+        <p>Idade:
+            <input type="number" name="idade"></p>
+        <p>Cidade:
+            <input type="text" size="40" name="cidade"></p>
+        <p>
+            <input type="submit" value="Cadastrar"/>
+    </form>
+<table>
+<caption><b>Vendedores</b></caption>
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Cidade</th>
+        <th>Ações</th>
+    </tr>
+    <?php foreach ( $vendedores as $v ) { ?>
+        <tr>
+            <td><?= $v['vendedor_id']; ?></td>
+            <td><?= $v['nome']; ?></td>
+            <td><?= $v['idade']; ?> </td>
+            <td><?= $v['cidade']; ?> </td>
+            <td><?= $v['cidade']; ?> </td>
+            <td>
+                <form name='formDelete' method='post'>
+                    <button type='submit' name='delete' value='<?= $v['vendedor_id']; ?>'>Deletar</Button>
+                </form>
+             </td>
+        </tr>
+    <?php } ?>
+</table>

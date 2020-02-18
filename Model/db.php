@@ -1,14 +1,19 @@
 <?php
 
-$hostname='localhost';
-$username='root';
-$password='';
+class Db {
 
-try {
-    $db = new PDO("mysql:host=$hostname;dbname=info commcept",$username,$password);
+    protected $conn;
 
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    function __construct(){
+        try {
+            $this->conn = new PDO("mysql:host=localhost;dbname=info commcept",'root','');
+        
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }  
+    }
 }
-catch(PDOException $e){
-    echo $e->getMessage();
-}
+
+
