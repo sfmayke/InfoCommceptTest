@@ -24,7 +24,6 @@ if (!empty($_POST)) {
 
         $vendedor = $vendedores_model->find_one((int)$_POST['editar_id']);
         $getString = http_build_query($vendedor);
-
         redirecionar("../View/Vendedores/Update.php?$getString");
     }
     else if(isset($_POST['update'])){

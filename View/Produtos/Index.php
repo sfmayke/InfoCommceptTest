@@ -21,45 +21,44 @@
 <table>
     <tr>
         <td>
-        <p>Cadastro de Vendedores</p>
+        <p style="text-align: center"><b>CADASTRO DE PRODUTOS</b></p>
             <form method="post">
                 <p>Nome:
                     <input type="text" size="40" name="nome"></p>
-                <p>Idade:
-                    <input type="number" name="idade"></p>
-                <p>Cidade:
-                    <input type="text" size="40" name="cidade"></p>
+                <p>Descricao:
+                    <input type="text" size="40" name="descricao"></p>
                 <p>
                     <button type="submit" name='save' value='true'>Cadastrar</Button>
             </form>
-        <form>
-            <span>Buscar Vendedor:</span>
-            <input type="text" name='vendedor_search'></input><button onclick="search();" >Buscar</button>
+            <br/>
+            <br/>
+        <form  style="text-align: center">
+            <span><b>BUSCAR PRODUTO:</b></span>
+            <br/>
+            <br/>
+            <input type="text" name='produto_search'></input><button onclick="search();" >Buscar</button>
         </form>
         </td>
         <td>
         <div style="overflow-y:scroll; height: 30em; width: 30em">
         <table class="hoverTable">
-        <caption><b>Vendedores</b></caption>
+        <caption style="text-align: center"><b>PRODUTOS</b></caption>
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
-                <th>Idade</th>
-                <th>Cidade</th>
-                <th>Ações</th>
+                <th>Descrição</th>
             </tr>
-            <?php foreach ( $vendedores as $v ) { ?>
+            <?php foreach ( $produtos as $v ) { ?>
                 <tr>
-                    <td><?= $v['vendedor_id']; ?></td>
+                    <td><?= $v['produto_id']; ?></td>
                     <td><?= $v['nome']; ?></td>
-                    <td><?= $v['idade']; ?> </td>
-                    <td><?= $v['cidade']; ?> </td>
+                    <td><?= $v['descricao']; ?> </td>
                     <td>
                         <form method='post'>
-                            <button type='submit' name='delete_id' value='<?= $v['vendedor_id']; ?>'>Deletar</Button>
+                            <button type='submit' name='delete_id' value='<?= $v['produto_id']; ?>'>Deletar</Button>
                         </form>
                         <form method='post'>
-                            <button type='submit' name='editar_id' value='<?= $v['vendedor_id']; ?>'>Editar</Button>
+                            <button type='submit' name='editar_id' value='<?= $v['produto_id']; ?>'>Editar</Button>
                         </form>
                     </td>
                 </tr>
