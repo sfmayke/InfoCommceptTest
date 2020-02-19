@@ -6,7 +6,15 @@
     }
     tr:hover {background-color: #f5f5f5;}
 </style>
-
+<?php session_start();
+    if (isset($_SESSION['delete_mensagem'])) {
+        echo "<p style='color: green'><b>".$_SESSION['delete_mensagem']."</b></p>";
+        unset($_SESSION['delete_mensagem']);
+    }elseif(isset($_SESSION['save_mensagem'])){
+        echo "<p style='color: green'><b>".$_SESSION['save_mensagem']."</b></p>";
+        unset($_SESSION['save_mensagem']);
+    }
+?>
 <p>Cadastro de Vendedores</p>
     <form method="post">
         <p>Nome:
@@ -18,6 +26,11 @@
         <p>
             <button type="submit" name='save' value='true'>Cadastrar</Button>
     </form>
+<form>
+    <span>Buscar Vendedor:</span>
+    <input type="text" name='vendedor_search'></input><button onclick="search();" >Buscar</button>
+</form>
+
 <table>
 <caption><b>Vendedores</b></caption>
     <tr>
@@ -44,3 +57,4 @@
         </tr>
     <?php } ?>
 </table>
+<script><?php require_once('../Js/Search.js'); ?></script>

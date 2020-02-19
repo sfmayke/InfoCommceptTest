@@ -10,7 +10,7 @@ class Vendedores_Model extends db{
         parent::__construct();
     }
     
-    function get_all(){
+    function all(){
         
         $sql = "SELECT * FROM $this->table_name";
         
@@ -21,7 +21,7 @@ class Vendedores_Model extends db{
         return $row;
     }
 
-    function find($id) {
+    function find_one($id) {
         
         $sql = "SELECT * FROM $this->table_name WHERE vendedor_id = $id";
         
@@ -29,6 +29,17 @@ class Vendedores_Model extends db{
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    function find_all($nome) {
+        
+        $sql = "SELECT * FROM $this->table_name WHERE nome LIKE '%$nome%'";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
 
@@ -43,16 +54,26 @@ class Vendedores_Model extends db{
             ':cidade' => $parametros['cidade']));
     }
 
+    function update($parametros){
+        
+        $sql = "UPDATE $this->table_name 
+                SET nome = :nome, idade = :idade, cidade = :cidade 
+                WHERE vendedor_id = :id";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(array(
+            ':nome' => $parametros['nome'],
+            ':idade' => (int)$parametros['idade'],
+            ':cidade' => $parametros['cidade'],
+            ':id' => $parametros['vendedor_id']));
+    }
+
     function delete($id){
 
         $sql = "DELETE FROM $this->table_name WHERE vendedor_id = :id";
         $stmt = $this->conn->prepare($sql);
 
         $stmt->execute(array(':id' => $id));
-    }
-
-    function update(){
-
     }
 }
 
