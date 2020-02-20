@@ -19,6 +19,19 @@
     }
 ?>
 <table>
+<tr>
+        <td>
+            <p style="text-align: left">
+                <a href="Vendedores_Controller.php">Cadastro de Vendedores</a>
+            </p>
+        </td>
+        <td>
+            <p style="text-align: right">
+                <a href="Vendas_Controller.php">Cadastro de Vendas</a>
+            </p>
+        </td>
+    </tr>
+    <tr>
     <tr>
         <td>
         <p style="text-align: center"><b>CADASTRO DE PRODUTOS</b></p>

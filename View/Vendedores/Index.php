@@ -19,9 +19,22 @@
     }
 ?>
 <table>
+<tr>
+        <td>
+            <p style="text-align: left">
+                <a href="Vendas_Controller.php">Cadastro de Vendas</a>
+            </p>
+        </td>
+        <td>
+            <p style="text-align: right">
+                <a href="Produtos_Controller.php">Cadastro de Produtos</a>
+            </p>
+        </td>
+    </tr>
+    <tr>
     <tr>
         <td>
-        <p>Cadastro de Vendedores</p>
+        <p style="text-align: center"><b>CADASTRO DE VENDEDORES</b></p>
             <form method="post">
                 <p>Nome:
                     <input type="text" size="40" name="nome"></p>
