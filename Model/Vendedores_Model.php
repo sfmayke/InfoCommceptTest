@@ -43,6 +43,17 @@ class Vendedores_Model extends db{
         return $row;
     }
 
+    function find_id_vendedores() {
+        
+        $sql = "SELECT vendedor_id, nome FROM $this->table_name";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
     function save($parametros){
 
         $sql = "INSERT INTO $this->table_name (nome, idade, cidade) VALUES (:nome, :idade, :cidade)";
