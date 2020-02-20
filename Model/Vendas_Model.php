@@ -23,6 +23,21 @@ class Vendas_Model extends db {
         return $row;
     }
 
+    function find_all($nome) {
+        
+        $sql = "SELECT venda_id, v.nome, p.nome, data FROM $this->table_name JOIN vendedores v JOIN produtos p 
+                ON vendas.produto_id = p.produto_id 
+                AND vendas.vendedor_id = v.vendedor_id 
+                WHERE v.nome like '%:nome%' 
+                OR p.nome like '%:nome%'";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(array(':nome' => $nome));
+        
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
     function find_one($id) {
         
         $sql = "SELECT venda_id, v.nome as vnome, p.nome as pnome, data FROM $this->table_name JOIN vendedores v JOIN produtos p 
@@ -114,16 +129,17 @@ class Vendas_Model extends db {
 
     function save($parametros){
 
-        $sql = "INSERT INTO $this->table_name (produto_id, vendedor_id) VALUES (:p_id, :v_id)";
+        $sql = "INSERT INTO $this->table_name (produto_id, vendedor_id, data) VALUES (:p_id, :v_id, :data)";
         $stmt = $this->conn->prepare($sql);
-
+        
         $stmt->execute(array(
-            ':p_id' => $parametros['p_id'],
-            ':v_id' => $parametros['v_descricao']));
+            ':p_id' => $parametros['produto'],
+            ':v_id' => $parametros['vendedor'],
+            ':data' => $parametros['data']));
     }
 
     function update($parametros){
-        //var_dump($parametros);exit;
+
         $sql = "UPDATE $this->table_name 
                 SET produto_id = :p_id, vendedor_id = :v_id , data = :data
                 WHERE venda_id = :id";

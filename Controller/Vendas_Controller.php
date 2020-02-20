@@ -15,11 +15,20 @@ if (!empty($_GET['produto_search'])){
     $vendas = $vendas_model->all();
 }
 
+$vendedores_ids = $vendedores_model->find_id_vendedores();
+$produtos_ids = $produtos_model->find_id_produtos();
+
+session_start();
+        $_SESSION['vendedores_ids'] = $vendedores_ids;
+        $_SESSION['produtos_ids'] = $produtos_ids;
+
 if (!empty($_POST)) {
 
     if (isset($_POST['save'])) {
 
+        $_POST['data'] = strtotime($_POST['data']); 
         $vendas_model->save($_POST);
+        
         session_start();
         $_SESSION['save_mensagem'] = 'Dados salvos com Sucesso!';
 
@@ -33,7 +42,6 @@ if (!empty($_POST)) {
         $vendedores_ids = $vendedores_model->find_id_vendedores();
         $produtos_ids = $produtos_model->find_id_produtos();
         
-        session_start();
         $_SESSION['vendedores_ids'] = $vendedores_ids;
         $_SESSION['produtos_ids'] = $produtos_ids;
 

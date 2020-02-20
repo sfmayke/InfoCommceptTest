@@ -9,7 +9,7 @@
     }
     
 </style>
-<?php session_start();
+<?php 
     if (isset($_SESSION['delete_mensagem'])) {
         echo "<p style='color: green'><b>".$_SESSION['delete_mensagem']."</b></p>";
         unset($_SESSION['delete_mensagem']);
@@ -21,14 +21,40 @@
 <table>
     <tr>
         <td>
+            <p style="text-align: left">
+                <a href="Vendedores_Controller.php">Cadastro de Vendedores</a>
+            </p>
+        </td>
+        <td>
+            <p style="text-align: right">
+                <a href="Produtos_Controller.php">Cadastro de Produtos</a>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        
         <p style="text-align: center"><b>CADASTRO DE VENDAS</b></p>
-            <form method="post">
-                <p>Nome:
-                    <input type="text" size="40" name="nome"></p>
-                <p>Descricao:
-                    <input type="text" size="40" name="descricao"></p>
+                <form method="post">
+                <input type="number" name="venda_id" hidden value="<?= $_GET['venda_id'] ?>"></p>
+                <p>Vendedor:
+                <select name="vendedor">
+                    <?php foreach ($_SESSION['vendedores_ids'] as $vendedor) { ?>
+                        <option value="<?= $vendedor['vendedor_id'] ?>"><?= $vendedor['nome'] ?></option>
+                    <?php } ?>
+                </select>
+                    <!-- <input type="text" size="40" name="vendedor" value="<?= $_GET['vnome'] ?>"></p> -->
+                <p>Produto:
+                    <select name="produto">
+                    <?php foreach ($_SESSION['produtos_ids'] as $produto) { ?>
+                        <option value="<?= $produto['produto_id'] ?>"><?= $produto['nome'] ?></option>
+                    <?php } ?>
+                    </select>
+                    <!-- <input type="text" size="40" name="produto" value="<?= $_GET['pnome'] ?>"></p> -->
+                <p>Data:
+                    <input type="date" name="data" value="<?= date('Y-m-d', (int)$_GET['data']); ?>"></p>
                 <p>
-                    <button type="submit" name='save' value='true'>Cadastrar</Button>
+                    <button type="submit" name='save' value='true'>Adicionar Venda</Button>
             </form>
             <br/>
             <br/>
